@@ -45,10 +45,18 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(width: 40, height: 4, decoration: BoxDecoration(color: AppColors.divider, borderRadius: BorderRadius.circular(2))),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.divider,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
             const SizedBox(height: 20),
             Container(
-              width: 60, height: 60,
+              width: 60,
+              height: 60,
               decoration: BoxDecoration(
                 color: t.categoryColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(16),
@@ -56,14 +64,28 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
               child: Icon(t.categoryIcon, color: t.categoryColor, size: 30),
             ),
             const SizedBox(height: 16),
-            Text(t.title, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+            Text(
+              t.title,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: AppColors.textPrimary,
+              ),
+            ),
             const SizedBox(height: 8),
             Text(
               '${isIncome ? '+' : '-'}${currencyFormat.format(t.amount)}',
-              style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.bold, color: isIncome ? AppColors.income : AppColors.expense),
+              style: GoogleFonts.poppins(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: isIncome ? AppColors.income : AppColors.expense,
+              ),
             ),
             const SizedBox(height: 20),
-            _buildDetailRow('Category', t.category.name[0].toUpperCase() + t.category.name.substring(1)),
+            _buildDetailRow(
+              'Category',
+              t.category.name[0].toUpperCase() + t.category.name.substring(1),
+            ),
             _buildDetailRow('Type', isIncome ? 'Income' : 'Expense'),
             _buildDetailRow('Date', dateFormat.format(t.date)),
             _buildDetailRow('Description', t.description ?? 'No description'),
@@ -80,9 +102,23 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: GoogleFonts.poppins(fontSize: 13, color: AppColors.textSecondary)),
+          Text(
+            label,
+            style: GoogleFonts.poppins(
+              fontSize: 13,
+              color: AppColors.textSecondary,
+            ),
+          ),
           Flexible(
-            child: Text(value, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.textPrimary), textAlign: TextAlign.end),
+            child: Text(
+              value,
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
+              textAlign: TextAlign.end,
+            ),
           ),
         ],
       ),
@@ -130,11 +166,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     AppColors.income,
                   ),
                 ),
-                Container(
-                  height: 40,
-                  width: 1,
-                  color: Colors.white24,
-                ),
+                Container(height: 40, width: 1, color: Colors.white24),
                 Expanded(
                   child: _buildSummaryItem(
                     'Expense',
@@ -160,7 +192,9 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     label: Text(
                       filter,
                       style: GoogleFonts.poppins(
-                        color: isSelected ? Colors.white : AppColors.textPrimary,
+                        color: isSelected
+                            ? Colors.white
+                            : AppColors.textPrimary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -174,7 +208,9 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                       side: BorderSide(
-                        color: isSelected ? AppColors.primary : AppColors.divider,
+                        color: isSelected
+                            ? AppColors.primary
+                            : AppColors.divider,
                       ),
                     ),
                   ),
@@ -207,17 +243,18 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   }
 
   Widget _buildSummaryItem(
-      String label, String amount, IconData icon, Color color) {
+    String label,
+    String amount,
+    IconData icon,
+    Color color,
+  ) {
     return Column(
       children: [
         Icon(icon, color: color, size: 20),
         const SizedBox(height: 4),
         Text(
           label,
-          style: GoogleFonts.poppins(
-            color: Colors.white70,
-            fontSize: 13,
-          ),
+          style: GoogleFonts.poppins(color: Colors.white70, fontSize: 13),
         ),
         Text(
           amount,
